@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/title_Fragment">
+    <fragment
+        android:id="@+id/title_Fragment"
+        android:name="com.aryan.uselessapp.Title_Fragment"
+        android:label="Title_Fragment"
+        tools:layout="@layout/fragment_title">
+        <action
+            android:id="@+id/action_title_Fragment_to_main_Fragment"
+            app:destination="@id/main_Fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/main_Fragment"
+        android:name="com.aryan.uselessapp.Main_Fragment"
+        android:label="Main_Fragment"
+        tools:layout="@layout/fragment_main_"/>
+</navigation>
