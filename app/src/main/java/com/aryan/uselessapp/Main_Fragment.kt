@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.aryan.uselessapp.databinding.FragmentMainBinding
 import com.aryan.uselessapp.databinding.FragmentTitleBinding
@@ -16,8 +17,6 @@ import com.aryan.uselessapp.databinding.FragmentTitleBinding
 class Main_Fragment : Fragment() {
 
     private lateinit var viewModel: MainViewModel
-
-    var score = 0
 
     private lateinit var binding : FragmentMainBinding
 
@@ -31,17 +30,26 @@ class Main_Fragment : Fragment() {
 
 
         Log.i("MainFragment","Called ViewModelProvider")
+
+
         viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
         binding.btPlus.setOnClickListener {
             viewModel.countAdd()
-            binding.tvNumber.text = viewModel.count.toString()
+            //binding.tvNumber.text = viewModel.count.toString()
         }
 
         binding.btMinus.setOnClickListener {
             viewModel.countMinus()
-            binding.tvNumber.text = viewModel.count.toString()
+            //binding.tvNumber.text = viewModel.count.toString()
         }
+
+        viewModel.count.observe(viewLifecycleOwner, Observer { newCount ->
+            binding.tvNumber.text = newCount.toString()
+        })
+
+
+
         return binding.root
     }
 
